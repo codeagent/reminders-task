@@ -17,9 +17,9 @@ import { NotifyService } from '../notify.service';
 })
 export class ReminderListComponent implements OnInit {
 
-  private groups;
-  private reminders;
-  private title;
+  groups;
+  reminders;
+  title;
 
   constructor(
     private app: AppComponent,

@@ -10,8 +10,8 @@ import { FilterPipe } from '../filter.pipe';
 })
 export class SearchComponent implements OnInit {
 
-  private search: string = '';
-  private reminders = [];
+  search: string = '';
+  reminders = [];
   constructor(private route: ActivatedRoute, private filter: FilterPipe<any>) { }
 
   ngOnInit() {

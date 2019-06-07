@@ -23,7 +23,7 @@ class Reminder {
 })
 export class ReminderFormComponent implements OnInit {
 
-  private model: Reminder;
+  model: Reminder;
   constructor(
     private api: ApiService,
     private router: Router,
