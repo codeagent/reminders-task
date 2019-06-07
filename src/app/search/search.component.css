@@ -1,0 +1,23 @@
+#search-form {
+    display: flex;
+}
+#search-form mat-form-field {
+    flex: 1 0 auto;
+    margin: 12px;
+}
+#app-title {
+    flex: 1 0 auto;
+}
+#search-form {
+    margin-top: 64px;
+}
+
+#cancel-btn {
+    font-size: 16px;
+}
+
+@media (max-width: 599px) {
+    #search-form {
+        margin-top: 56px;
+    }
+}

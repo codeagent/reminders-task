@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <ng-container *ngIf="model.id; else elseBlock">
+    <h1 id="app-title">Edit</h1>
+    <button mat-button (click)="showPrompt()" class="ctrl-btn">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </ng-container>
+  <ng-template #elseBlock >
+      <h1 id="app-title">Create</h1>
+  </ng-template>
+
+  <button mat-button class="ctrl-btn" (click)="submit(form)">OK</button>
+  <a mat-button routerLink="/reminders" class="ctrl-btn">CANCEL</a>
+</mat-toolbar>
+
+<form class="edit-form" #form="ngForm">
+  <mat-form-field>
+    <input matInput placeholder="Title" name="note" [(ngModel)]="model.note" required maxlength="128" minlength="4">
+    <mat-error>Text field <strong> should be more than than 3 chars in length </strong></mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="myDatepicker" placeholder="Date" name="date" [(ngModel)]="model.date" required>
+    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+    <mat-datepicker #myDatepicker touchUi></mat-datepicker>
+    <mat-error>Date is <strong>required</strong></mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="time" step="5" matInput placeholder="Time" [(ngModel)]="model.time" name="time" required>
+    <mat-icon matSuffix>access_time</mat-icon>
+  </mat-form-field>
+
+</form>

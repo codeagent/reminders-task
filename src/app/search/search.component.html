@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <mat-icon>search</mat-icon>
+  <h1 id="app-title">Search</h1>
+
+  <a mat-button routerLink="/reminders" id="cancel-btn">CANCEL</a>
+</mat-toolbar>
+
+<form id="search-form" ngNoForm>
+  <mat-form-field appearance="outline">
+    <mat-label>Search by title</mat-label>
+    <input matInput placeholder="Search" [(ngModel)]="search">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</form>
+
+<mat-nav-list *ngIf="filtered.length">
+  <h3 mat-subheader>Search results</h3>
+  <mat-divider></mat-divider>
+  <div *ngFor="let reminder of filtered">
+    <a mat-list-item [routerLink]="['/reminders', reminder.id, 'edit']">
+      <h4 matLine> 
+          <span [style.text-decoration]="!reminder.active ? 'line-through': 'none'"> {{reminder.note}} </span>
+      </h4>
+      <p matLine>
+        <time class="text-muted"> <small>{{ reminder.date | date:'dd MMM HH:mm:ss' }}</small></time>
+      </p>
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </a>
+    <mat-divider></mat-divider>
+  </div>
+</mat-nav-list>
+<mat-list *ngIf="!filtered.length">
+    <h3 mat-subheader>Nothing found</h3>
+</mat-list>

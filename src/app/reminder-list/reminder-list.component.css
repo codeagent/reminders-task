@@ -1,0 +1,20 @@
+mat-nav-list {
+    margin-top: 64px;
+}
+
+@media (max-width: 599px) {
+    mat-nav-list {
+        margin-top: 56px;
+    }
+}
+
+#app-title {
+    flex: 1 0 auto;
+}
+
+#add {
+    position: fixed;
+    z-index: 20;
+    right: 15px;
+    bottom: 15px;
+}

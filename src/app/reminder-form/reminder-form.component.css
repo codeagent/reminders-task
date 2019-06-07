@@ -1,0 +1,20 @@
+form{
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+}
+  
+form * {
+    width: 100%;
+}
+
+#app-title {
+    flex: 1 0 auto;
+}
+.edit-form {
+    margin-top: 74px;
+}
+
+.ctrl-btn {
+    font-size: 16px;
+}

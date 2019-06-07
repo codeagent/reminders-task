@@ -1,0 +1,14 @@
+/* @import "./normalize.css"; */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+mat-toolbar {
+    position: fixed;
+    z-index: 100;
+}
+
+.text-muted {
+    color: #888;
+}

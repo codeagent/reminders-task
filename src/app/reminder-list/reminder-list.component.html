@@ -1,0 +1,57 @@
+<mat-toolbar color="primary" class="example-toolbar">
+  <button mat-icon-button (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1 id="app-title">{{ title }}</h1>
+  <a [routerLink]="['/reminders/search']" mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </a>
+  <!-- 
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button (click)="picker.open()" mat-menu-item>
+      <mat-icon>today</mat-icon>
+      <span>Select by date</span>
+    </button>
+    <a [routerLink]="['/reminders/search']" mat-menu-item>
+      <mat-icon>search</mat-icon>
+      <span>Search</span>
+    </a>
+  </mat-menu>
+  
+  <input type="hidden" [matDatepicker]="picker" placeholder="Choose a date">
+  <mat-datepicker touchUi #picker></mat-datepicker> -->
+</mat-toolbar>
+<mat-nav-list>
+
+  <ng-container *ngFor="let group of groups">
+    <h3 mat-subheader>{{ group.title }}</h3>
+    <mat-divider></mat-divider>
+
+    <ng-container *ngFor="let reminder of group.items; let last=last">
+      <ng-container *ngIf="!reminder.deleted">
+        <mat-list-item (click)="goto(reminder)">
+          <h4 matLine>
+            <span [style.text-decoration]="!reminder.active ? 'line-through': 'none'"> {{reminder.note}} </span>
+          </h4>
+          <p matLine>
+            <time class="text-muted"> <small>{{ reminder.date | date:"dd MMM HH:mm:ss" }}</small></time>
+          </p>
+          <button mat-icon-button (click)="$event.stopPropagation(); showPrompt(reminder);">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </ng-container>
+
+  </ng-container>
+
+  <h3 mat-subheader *ngIf="!reminders.length"> Nothing found</h3>
+</mat-nav-list>
+
+<a [routerLink]="['/reminders/create']" mat-fab color="primary" aria-label="Create new one" id="add">
+  <mat-icon>add</mat-icon>
+</a>

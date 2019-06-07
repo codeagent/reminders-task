@@ -1,0 +1,24 @@
+<div class="example-container example-is-mobile">
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #snav mode="over">
+      <mat-list>
+        <mat-list-item>
+          <h2 matLine><strong>{{ username }}</strong></h2>
+          <button mat-icon-button aria-label="Exit" (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="['/reminders']">All</a>
+        <a mat-list-item [routerLink]="['/reminders/active']">Active</a>
+        <a mat-list-item [routerLink]="['/reminders/skipped']">Skipped</a>
+        <a mat-list-item [routerLink]="['/reminders/create']">Create new</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
