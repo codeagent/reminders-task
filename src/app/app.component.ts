@@ -19,16 +19,15 @@ export class AppComponent implements OnInit {
     private router: Router,
     private notifier: NotifyService,
     private snakbar: MatSnackBar,
-    @Inject('Audio') private audio,
-    private storage: StorageService,
-    private route: ActivatedRoute,
-
+    private storage: StorageService
   ) { }
 
   ngOnInit() {
     this.notifier.notifications.subscribe(_ => {
       if (this.auth.isSignedIn()) {
-        this.audio.play();
+        const audio = new Audio();
+        audio.src = './assets/ding.wav';
+        audio.play();
         this.snakbar.open(_.data.note, 'CLOSE', {
           duration: 15000
         });

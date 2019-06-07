@@ -56,13 +56,13 @@ import { StorageService } from './storage.service';
     NotifyService,
     // AppHttpInterceptor,
     { provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true },
-    {
-      provide: 'Audio', useFactory() {
-        const audio = new Audio();
-        audio.src = './assets/ding.wav';
-        return audio;
-      }
-    }
+    // {
+    //   provide: 'Audio', useFactory() {
+    //     const audio = new Audio();
+    //     audio.src = './assets/ding.wav';
+    //     return audio;
+    //   }
+    // }
   ],
   bootstrap: [AppComponent]
 })
