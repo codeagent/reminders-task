@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
@@ -9,18 +9,19 @@ import { AuthService } from '../auth.service';
 import * as moment from 'moment';
 import { StorageService } from '../storage.service';
 import { NotifyService } from '../notify.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-reminder-list',
   templateUrl: './reminder-list.component.html',
   styleUrls: ['./reminder-list.component.css']
 })
-export class ReminderListComponent implements OnInit {
+export class ReminderListComponent implements OnInit, OnDestroy {
 
   groups;
   reminders;
   title;
-
+  private subscription: Subscription;
   constructor(
     private app: AppComponent,
     private router: Router,
@@ -65,11 +66,16 @@ export class ReminderListComponent implements OnInit {
     });
 
     // Subscribe to notifier -> data update
-    this.notifier.notifications.subscribe(_ => {
+    this.subscription = this.notifier.notifications.subscribe(_ => {
       this.reminders.find(e => e.id === _.data.id).active = false;
       this.storage.removeItem('reminders');
     });
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 
   goto(reminder) {
     this.router.navigate(['reminders', reminder.id, 'edit']);
